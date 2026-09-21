@@ -19,6 +19,7 @@ import {
   SliderProductsWithHeader,
   EnhancedSquareBanners,
 } from './components/home';
+import { SolyoraBundle } from './components/home/SolyoraBundle';
 import { registerThemeHooks } from './hooks';
 
 // Register theme-level hooks (AddProductToast, DigitalFilesSettings, etc.)
@@ -26,6 +27,7 @@ registerThemeHooks();
 
 registerHomeComponents({
   ...DefaultHomeComponents,
+  'bundle-component': SolyoraBundle,
   brands: Brands,
   'enhanced-slider': EnhancedSlider,
   'custom-testimonials': CustomTestimonials,
@@ -59,6 +61,7 @@ registerHomeComponents({
 // the literal `styleN` values; this covers the semantic `view_style`s too.
 // `custom-testimonials` gets `s-block--full-bg` so the gray band runs edge-to-edge.
 registerHomeComponentConfig({
+  'bundle-component': { className: 'solyora-bundle-block' },
   'featured-products': featuredProductsConfig,
   'custom-testimonials': {
     className: 's-block s-block--custom-testimonials s-block--full-bg',

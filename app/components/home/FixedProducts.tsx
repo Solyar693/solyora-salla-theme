@@ -35,7 +35,7 @@ export function FixedProducts({ data }: FixedProductsProps) {
   const limit = data.limit ? Number(data.limit) : undefined;
   const isVertical = data.isVertical ?? true;
 
-  const { data: result, isLoading } = useQuery(
+  const { data: result, isLoading, isError, refetch } = useQuery(
     product.queries.list({
       source: data.products.source,
       sourceValue: data.products?.source_value,
@@ -49,7 +49,8 @@ export function FixedProducts({ data }: FixedProductsProps) {
     return <FixedProductsSkeleton />;
   }
 
-  if (!products.length) return null;
+  if (isError) return <div className="solyora-empty" role="alert">تعذر تحميل المنتجات. <button onClick={() => refetch()}>إعادة المحاولة</button></div>;
+  if (!products.length) return <p className="solyora-empty" role="status">لا توجد منتجات للعرض حاليًا.</p>;
 
   return (
     <Suspense fallback={<FixedProductsSkeleton />}>

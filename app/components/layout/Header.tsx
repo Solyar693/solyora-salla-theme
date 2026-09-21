@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouterState } from '@tanstack/react-router';
-import { SallaAdvertisement } from '@salla.sa/twilight-components-react/advertisement';
-import { SallaSearch } from '@salla.sa/twilight-components-react/search';
+
+import { SallaSearchCore as SallaSearch } from '@salla.sa/twilight-components-react/search';
 import { SallaSocial } from '@salla.sa/twilight-components-react/social';
 import { SallaMenu } from '@salla.sa/twilight-components-react/menu';
 import { SallaUserMenu } from '@salla.sa/twilight-components-react/user-menu';
@@ -10,7 +10,7 @@ import { SallaContacts } from '@salla.sa/twilight-components-react/contacts';
 import { useTwilight, useIsHome } from '@salla.sa/twilight-theme-engine/providers';
 import { useTranslation } from '@salla.sa/twilight-theme-engine/i18n';
 import { HookSlot } from '@salla.sa/twilight-theme-engine/hooks';
-import { Image } from '@salla.sa/twilight-theme-engine/common';
+import { Link } from '@salla.sa/twilight-theme-engine/common';
 import { MapPinIcon, SearchIcon, ShoppingBagIcon } from '../icons';
 import { useHydrated } from '../common/useHydrated';
 import { PRODUCT_ROUTE_ID } from '../common/routeIds';
@@ -84,7 +84,7 @@ export function Header({ navOpen: navOpenProp, onNavOpenChange }: HeaderProps = 
   const { store, theme } = useTwilight();
   const { t } = useTranslation();
   const isHome = useIsHome();
-  const isDefaultLayout = theme?.settings?.header_layout === 'default';
+  const isDefaultLayout = true;
   const stickyEnabled = theme?.settings?.header_is_sticky !== false;
   const [navOpenState, setNavOpenState] = useState(false);
   const navOpen = navOpenProp ?? navOpenState;
@@ -146,15 +146,13 @@ export function Header({ navOpen: navOpenProp, onNavOpenChange }: HeaderProps = 
   return (
     <header
       className={`site-header site-header--${isDefaultLayout ? 'default' : 'lite'}${
-        isProductPage ? ' site-header--product' : ''
+        isProductPage ? ' site-header--product' : isHome ? ' site-header--home' : ''
       }`}
       suppressHydrationWarning
     >
       <HookSlot name="header:start" />
 
-      <div className="site-header__ad">
-        <SallaAdvertisement />
-      </div>
+
 
       {/* "Delivering to …" tag (bullet delivery). Phones get it above the bars; on
           desktop it sits in the top nav (default layout) or its own slim row (lite).
@@ -163,7 +161,7 @@ export function Header({ navOpen: navOpenProp, onNavOpenChange }: HeaderProps = 
         <salla-bullet-delivery-tag data-testid="store-header-bullet-delivery-mobile" />
       </div>
       {isDefaultLayout ? (
-        <HeaderTopnav />
+        <div className="solyora-topnav"><HeaderTopnav /></div>
       ) : (
         <div className="site-header__bullet site-header__bullet--desktop hidden lg:block">
           <div className="container">
@@ -197,16 +195,7 @@ export function Header({ navOpen: navOpenProp, onNavOpenChange }: HeaderProps = 
               </button>
             </div>
 
-            <a className="site-header__brand" href={store?.url || '/'}>
-              <Image
-                src={store?.logo}
-                alt={`${store?.name || 'Store'} logo`}
-                priority
-                width={140}
-                height={48}
-              />
-              <span className="sr-only">{store?.name || 'Store'}</span>
-            </a>
+            <Link className="site-header__brand solyora-header-wordmark" to="/" aria-label={store?.name || 'SOLYORA'}><span>SOLYORA</span><small>TIMELESS BEAUTY</small></Link>
 
             {isDefaultLayout && (
               <nav
@@ -218,6 +207,7 @@ export function Header({ navOpen: navOpenProp, onNavOpenChange }: HeaderProps = 
             )}
 
             <div className="site-header__actions">
+              <Link to="/account/wishlist" aria-label="المفضلة" className="header-action solyora-header-wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></Link>
               <SallaUserMenu avatarOnly showHeader relativeDropdown className="header-action" />
               {store?.scope && (
                 <ScopeButton label={store.scope.name || t('blocks.header.branches', 'Branches')} />

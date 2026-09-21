@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { SallaContacts } from '@salla.sa/twilight-components-react/contacts';
 import { SallaAppsIcons } from '@salla.sa/twilight-components-react/apps-icons';
 import { SallaSocial } from '@salla.sa/twilight-components-react/social';
 import { SallaMenu } from '@salla.sa/twilight-components-react/menu';
@@ -142,7 +143,7 @@ export function Footer() {
   const { store, theme } = useTwilight();
   const { t } = useTranslation();
   const year = new Date().getFullYear();
-  const isCentered = theme?.settings?.footer_layout === 'centered';
+  const isCentered = false;
 
   return (
     <footer
@@ -155,7 +156,7 @@ export function Footer() {
         {isCentered ? (
           <div className="container store-footer__centered">
             <Link to="/" className="store-footer__logo inline-flex items-center m-0">
-              <Image src={store.logo} alt={store.name || 'Store'} width={150} height={44} />
+              <span className="solyora-footer-wordmark">SOLYORA</span>
             </Link>
 
             {store.description && (
@@ -177,7 +178,7 @@ export function Footer() {
 
             <FooterTrust />
 
-            <div className="store-footer__apps">
+            <div className="store-footer__apps"><h3>تواصلي معنا</h3><SallaContacts contacts={store.contacts} contactsTitle="N/A" />
               <SallaAppsIcons
                 apps={store.apps}
                 appsTitle={t('blocks.footer.download_apps', 'Get our apps')}
@@ -188,7 +189,7 @@ export function Footer() {
           <div className="container grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-16">
             <div className="store-footer__brand rtl:lg:pl-16 ltr:lg:pr-16 sm:col-span-2">
               <Link to="/" className="store-footer__logo inline-flex items-center m-0 mb-5">
-                <Image src={store.logo} alt={store.name || 'Store'} width={150} height={44} />
+                <span className="solyora-footer-wordmark">SOLYORA</span>
               </Link>
 
               {store.description && (
@@ -204,7 +205,7 @@ export function Footer() {
               <FooterTrust />
             </div>
 
-            <div className="store-footer__links">
+            <div className="store-footer__links"><h3>اكتشفي SOLYORA</h3><SallaMenu source="header" useReactLink className="solyora-footer-navigation" />
               <h3>{t('blocks.footer.important_links', 'Important links')}</h3>
               <SallaMenu
                 source="footer"
@@ -214,7 +215,7 @@ export function Footer() {
               />
             </div>
 
-            <div className="store-footer__apps">
+            <div className="store-footer__apps"><h3>تواصلي معنا</h3><SallaContacts contacts={store.contacts} contactsTitle="N/A" />
               <SallaAppsIcons
                 apps={store.apps}
                 appsTitle={t('blocks.footer.download_apps', 'Get our apps')}

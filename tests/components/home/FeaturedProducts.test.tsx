@@ -1,3 +1,4 @@
+vi.mock('@salla.sa/twilight-theme-engine/providers', () => ({ useTwilight: () => ({ store: { url: 'https://example.com' }, theme: {settings:{}} }) }));
 import { describe, it, expect, vi } from 'vitest';
 import { render, fireEvent } from '@testing-library/react';
 import {

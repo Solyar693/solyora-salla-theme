@@ -1,8 +1,11 @@
+vi.mock('@salla.sa/twilight-components-react/menu', () => ({ SallaMenu: () => <salla-menu /> }));
+vi.mock('@salla.sa/twilight-components-react/contacts', () => ({ SallaContacts: () => <salla-contacts /> }));
 import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, act } from '@testing-library/react';
 import { Header } from '../../../app/components/layout/Header';
 
+let onIntersection: IntersectionObserverCallback;
 const state = {
   store: {
     url: '/',
@@ -35,6 +38,7 @@ vi.mock('@salla.sa/twilight-theme-engine/hooks', () => ({
 }));
 
 vi.mock('@salla.sa/twilight-theme-engine/common', () => ({
+  Link: ({to, children, ...props}: any) => <a href={to} {...props}>{children}</a>,
   Image: (props: Record<string, unknown>) => (
     <img alt={String(props.alt ?? '')} src={String(props.src ?? '')} />
   ),
@@ -48,7 +52,7 @@ vi.mock('@salla.sa/twilight-components-react/advertisement', () => ({
   SallaAdvertisement: () => <salla-advertisement />,
 }));
 vi.mock('@salla.sa/twilight-components-react/search', () => ({
-  SallaSearch: () => <salla-search />,
+  SallaSearchCore: () => <salla-search />,
 }));
 vi.mock('@salla.sa/twilight-components-react/social', () => ({
   SallaSocial: () => <salla-social />,
@@ -63,6 +67,10 @@ vi.mock('@salla.sa/twilight-components-react/cart-summary', () => ({
 }));
 
 beforeEach(() => {
+  vi.stubGlobal('IntersectionObserver', class {
+    constructor(callback: IntersectionObserverCallback) { onIntersection = callback; }
+    observe() {} unobserve() {} disconnect() {}
+  });
   state.store = {
     url: '/',
     name: 'Acme',
@@ -79,7 +87,8 @@ describe('Header', () => {
   it('renders the shell: logo, actions, search modal, cart, and the hook slots', () => {
     const { container, getAllByLabelText } = render(<Header />);
     expect(container.querySelector('header.site-header')).toBeTruthy();
-    expect(container.querySelector('.site-header__brand img')).toBeTruthy();
+    expect(container.querySelector('.site-header__brand')?.textContent).toContain('SOLYORA');
+    expect(container.querySelector('.site-header__brand')?.getAttribute('href')).toBe('/');
     expect(container.querySelector('salla-user-menu')).toBeTruthy();
     expect(container.querySelector('salla-cart-summary')).toBeTruthy();
     expect(container.querySelector('salla-search')).toBeTruthy();
@@ -114,8 +123,8 @@ describe('Header', () => {
   });
 
   it('opens the nav drawer when the menu button is clicked', () => {
-    const { getByLabelText, getByTestId } = render(<Header />);
-    const button = getByLabelText('Menu');
+    const { getByRole, getByTestId } = render(<Header />);
+    const button = getByRole('button', { name: 'Menu' });
     expect(button.getAttribute('aria-expanded')).toBe('false');
     fireEvent.click(button);
     expect(button.getAttribute('aria-expanded')).toBe('true');
@@ -132,8 +141,7 @@ describe('Header', () => {
 
   it('pins the bar on scroll by default (header_is_sticky unset)', () => {
     const { container } = render(<Header />);
-    Object.defineProperty(window, 'scrollY', { value: 10, configurable: true });
-    fireEvent.scroll(window);
+    act(() => onIntersection([{isIntersecting:false} as IntersectionObserverEntry], {} as IntersectionObserver));
     expect(container.querySelector('.site-header__bar.is-scrolled')).toBeTruthy();
   });
 

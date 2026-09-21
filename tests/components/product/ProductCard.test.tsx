@@ -1,3 +1,4 @@
+vi.mock('@salla.sa/twilight-theme-engine/providers', () => ({ useTwilight: () => ({ store: { url: 'https://example.com' }, theme: {settings:{}} }) }));
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, waitFor, cleanup } from '@testing-library/react';
 import { ProductCard } from '../../../app/components/product/ProductCard';

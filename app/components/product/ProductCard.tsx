@@ -5,6 +5,9 @@ import { SallaButton } from '@salla.sa/twilight-components-react/button';
 import { useWishlist } from '@salla.sa/twilight-theme-engine/hooks/useWishlist';
 import { useTranslation } from '@salla.sa/twilight-theme-engine/i18n';
 
+import { useTwilight } from '@salla.sa/twilight-theme-engine/providers';
+import { storeLink } from '../common/storeLink';
+
 type ProductCardProps = ComponentProps<typeof EngineProductCard>;
 
 /**
@@ -28,6 +31,9 @@ type ProductCardProps = ComponentProps<typeof EngineProductCard>;
  * Styling: `04-components/product.scss`.
  */
 export function ProductCard(props: ProductCardProps) {
+  const { store } = useTwilight();
+  const { locale } = useTranslation();
+  const localProduct = { ...props.product, url: storeLink(props.product.url, store?.url, locale) };
   const ref = useRef<HTMLDivElement>(null);
   const [footerEl, setFooterEl] = useState<HTMLElement | null>(null);
 
@@ -63,7 +69,7 @@ export function ProductCard(props: ProductCardProps) {
 
   return (
     <div ref={ref} style={{ display: 'contents' }}>
-      <EngineProductCard {...props} />
+      <EngineProductCard {...props} product={localProduct} />
       {footerEl && createPortal(<FooterWishlistButton productId={props.product.id} />, footerEl)}
     </div>
   );

@@ -76,7 +76,7 @@ beforeEach(() => {
 describe('Footer', () => {
   it('renders the logo (not a store-name heading), description, social, badges, apps and payments', () => {
     const { container } = render(<Footer />);
-    expect(container.querySelector('.store-footer__logo img')).toBeTruthy();
+    expect(container.querySelector('.solyora-footer-wordmark')?.textContent).toBe('SOLYORA');
     expect(container.querySelector('.store-footer h3')?.textContent).not.toBe('Acme');
     expect(container.querySelector('.store-footer__desc')?.innerHTML).toContain('Handmade goods');
     expect(container.querySelector('salla-social')).toBeTruthy();
@@ -87,13 +87,13 @@ describe('Footer', () => {
     expect(container.querySelector('[data-hook-slot="footer:end"]')).toBeTruthy();
   });
 
-  it('renders the footer menu column, drops the Contact us widget', () => {
+  it('renders both Salla menus and the contact widget', () => {
     const { container } = render(<Footer />);
-    const menu = container.querySelector('.store-footer__links salla-menu');
+    const menu = container.querySelector('.store-footer__links salla-menu[data-source=footer]');
     expect(menu).toBeTruthy();
     expect(menu?.getAttribute('data-source')).toBe('footer');
-    expect(container.querySelector('.store-footer__links h3')?.textContent).toBe('Important links');
-    expect(container.querySelector('salla-contacts')).toBeNull();
+    expect(container.querySelector('.store-footer__links salla-menu[data-source=header]')).toBeTruthy();
+    expect(container.querySelector('salla-contacts')).toBeTruthy();
   });
 
   it('uses a four-column grid on desktop with a wide brand column', () => {
