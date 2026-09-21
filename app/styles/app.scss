@@ -1,0 +1,170 @@
+/*
+ * IMPORTANT NOTE: Theme based on Tailwindcss but for the purpose of simplifing the DOM we use
+ * tailwind classes with @apply directive in the SCSS files
+*/
+
+/**
+ * SETTINGS
+ * Fonts................Any font files.
+ * Global...............Project-specific, globally available variables.
+ * Breakpoints..........Mixins and variables for responsive styles.
+ *
+ * GENERIC
+ * Common...............All commn styles and assistan classes and common style fixes
+ * Reset................Reset specific elements to make them easier to style in other contexts.
+ * Animations...........Some of animations from anime.css
+ * RTL..................Specific styles for RTL.
+ * LTR..................Specific styles for LTR.
+ *
+ * ELEMENTS
+ * Forms................Element-level form styling.
+ * Buttons..............Specific styles for buttons.
+ * Radio................Specific styles for custom radio button.
+ * Radio Images.........Specific styles for radio images, used in product options.
+ *
+ * COMPONENTS
+ * Header...............Specific styles for header styles.
+ * Footer...............Specific styles for footer styles.
+ * Menu.................Specific styles for main menu and mobile menu styles.
+ * User Menu............Specific styles for user menu dropdown.
+ * User Pages...........Specific styles for user pages like profile, notifications, orders...
+ * Home Blocks..........Specific styles for home blocks.
+ * Slider...............Specific styles for sliders.
+ * Product..............Specific styles for single product page and it's elements.
+ * Brands...............Specific styles for brands page.
+ * Placeholder..........Specific styles for no content placeholders.
+ * Gifting..............Specific styles for gifting system.
+ * Loyalty..............Specific styles for loyalty system.
+ *
+ * UTILITIES
+ * Chat Bots............Specific styles for chats bots widget.
+ * Swal.................Specific styles for Sweet Alert addon.
+ * Safari Fixes.........Specific styles for Safari Browser.
+ *
+ * EMBEDED ADDONS
+ * Lite Youtube Embed...Specific styles for lite-youtube-embed addon.
+ * Swiper...............Specific styles for swiper slider addon.
+ * MMenu................Specific styles for mmenu addon.
+ *
+*/
+
+// Note: Tailwind directives are in app.css, not here
+
+@import './01-settings/fonts';
+@import './01-settings/global';
+@import './01-settings/breakpoints';
+
+@import './02-generic/reset';
+@import './02-generic/common';
+@import './02-generic/tooltip';
+@import './02-generic/animations';
+@import './02-generic/rtl';
+@import './02-generic/ltr';
+@import './02-generic/mixins';
+
+@import './03-elements/form';
+@import './03-elements/buttons';
+@import './03-elements/radio';
+@import './03-elements/radio-images';
+
+@import './04-components/header';
+@import './04-components/footer';
+@import './04-components/social';
+@import './04-components/mobile-bottom-bar';
+@import './04-components/mobile-page-title';
+@import './04-components/menus';
+@import './04-components/bottom-sheet';
+@import './04-components/breadcrumb';
+@import './04-components/user-menu';
+@import './04-components/user-pages';
+@import './04-components/home-blocks';
+@import './04-components/slider';
+@import './04-components/product';
+@import './04-components/product-list';
+@import './04-components/cart';
+@import './04-components/reviews';
+@import './04-components/metadata';
+@import './04-components/quantity-stepper';
+@import './04-components/brands';
+@import './04-components/no-content-placeholder';
+@import './04-components/gifting';
+@import './04-components/loyalty';
+@import './04-components/virtooal';
+@import './04-components/filters';
+@import './04-components/add-product-toast';
+
+@import './05-utilities/chat-bots';
+@import './05-utilities/swal';
+@import './05-utilities/safari-fixes';
+@import './05-utilities/font-customization';
+
+
+// For Dev Only
+/* Dev-only floating tool triggers (TanStack Router Devtools, the twilight.json
+   settings gear, the Salla dev panel). Hidden below `sm` so they don't sit on
+   top of the mobile UI. The gear button ships an inline `display: flex`, which
+   beats a plain rule, so the hide must be `!important`; at `sm+` this query
+   simply doesn't apply and each widget keeps its own display. */
+@media (max-width: 639.98px) {
+  .TanStackRouterDevtools,
+  button[aria-label='Theme dev settings'],
+  #__dt-salla-panel-host {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================\n   SOLYORA — bespoke luxury storefront identity\n   ========================================================================== */
+:root{--solyora-ink:#17120f;--solyora-deep:#211914;--solyora-gold:#b89255;--solyora-ivory:#f7f3eb;--solyora-cream:#fffdf8;--solyora-line:rgba(184,146,85,.35)}
+body{background:var(--solyora-ivory);color:var(--solyora-ink)}
+body.index #main-content{background:var(--solyora-ivory)}
+
+/* header */
+.site-header__ad{background:var(--solyora-deep);color:#fff}
+.site-header__bar-outer{min-height:78px!important}
+.site-header__bar{background:rgba(247,243,235,.94)!important;border-bottom:1px solid rgba(184,146,85,.2)!important;backdrop-filter:blur(16px)}
+.site-header__bar-inner{min-height:78px!important;max-width:1440px}
+.site-header__brand img{height:46px!important;max-width:180px!important}
+.header-action{color:var(--solyora-ink)!important;border-radius:999px}
+.header-action:hover{background:rgba(184,146,85,.12)!important;color:var(--solyora-gold)!important}
+.site-header__intro,.site-header__bullet--desktop{display:none!important}
+.site-header__mainmenu{font-size:.88rem;letter-spacing:.01em}
+.site-header__mainmenu a:hover{color:var(--solyora-gold)!important}
+
+/* hero */
+.s-block--hero-slider{margin:0!important;padding:0!important;background:var(--solyora-deep)}
+.s-block--hero-slider .swiper-slide{min-height:clamp(600px,78vh,860px)!important;aspect-ratio:auto!important;overflow:hidden}
+.s-block--hero-slider .swiper-slide>div:first-child{background-position:center!important;transform:scale(1.01)}
+.s-block--hero-slider .swiper-slide>div:first-child:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,12,9,.82) 0%,rgba(17,12,9,.58) 36%,rgba(17,12,9,.16) 70%,rgba(17,12,9,.28) 100%)}
+.s-block--hero-slider .home-slider__content{justify-content:flex-start!important;text-align:start!important;max-width:1440px!important;padding-inline:clamp(24px,7vw,110px)!important}
+.s-block--hero-slider .home-slider__content>div{width:min(620px,48vw)!important;text-align:start!important;margin-inline:0 auto!important}
+.s-block--hero-slider .home-slider__content>div:before{content:"TIMELESS BEAUTY";display:block;color:#d1ad72;font-size:12px;letter-spacing:.34em;margin-bottom:20px;font-weight:600}
+.s-block--hero-slider h2{font-size:clamp(38px,5vw,72px)!important;line-height:1.16!important;font-weight:500!important;margin-bottom:20px!important;text-shadow:0 3px 30px rgba(0,0,0,.25)}
+.s-block--hero-slider .description{font-size:clamp(15px,1.3vw,19px)!important;line-height:1.9!important;max-width:540px;color:rgba(255,255,255,.88)}
+.s-block--hero-slider .home-slider__cta{display:inline-flex!important;margin-top:30px;padding:13px 30px;border:1px solid var(--solyora-gold);background:var(--solyora-gold);color:#17120f!important;border-radius:2px;font-weight:600;transition:.25s}
+.s-block--hero-slider .home-slider__cta:hover{background:transparent;color:#fff!important}
+.s-block--hero-slider .swiper-pagination-bullet{background:#fff!important;opacity:.5}
+.s-block--hero-slider .swiper-pagination-bullet-active{background:var(--solyora-gold)!important;opacity:1}
+
+.solyora-editorial{background:var(--solyora-ivory);overflow:hidden}
+.solyora-section{max-width:1440px;margin:auto;padding:clamp(70px,9vw,130px) clamp(20px,5vw,72px)}
+.solyora-section-head{text-align:center;max-width:760px;margin:0 auto 52px}.solyora-section-head h2,.solyora-curated h2,.solyora-edit h2{font-size:clamp(34px,4.3vw,62px);line-height:1.25;font-weight:500;margin:14px 0}.solyora-section-head h2 em,.solyora-curated h2 em,.solyora-experience h2 em{font-style:normal;color:var(--solyora-gold)}
+.solyora-section-head p,.solyora-curated p,.solyora-edit p{color:#756c65;line-height:1.9;font-size:16px}.solyora-eyebrow{direction:ltr;display:flex;align-items:center;justify-content:center;gap:14px;color:var(--solyora-gold);font-size:11px;letter-spacing:.28em;font-weight:700}.solyora-eyebrow i{width:42px;height:1px;background:var(--solyora-gold)}
+.solyora-category-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.solyora-category-card{background:var(--solyora-cream);border:1px solid rgba(44,34,27,.08);overflow:hidden;transition:transform .35s,box-shadow .35s}.solyora-category-card:hover{transform:translateY(-7px);box-shadow:0 22px 60px rgba(39,28,20,.1)}.solyora-category-media{height:430px;background-size:cover;background-position:center;transition:transform .5s}.solyora-category-card:hover .solyora-category-media{transform:scale(1.025)}.solyora-cat-accessories{background-image:url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1000&q=88')}.solyora-cat-bags{background-image:url('https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=1000&q=88')}.solyora-cat-wrist{background-image:url('https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=1000&q=88')}.solyora-card-copy{padding:28px 28px 32px}.solyora-card-copy small,.solyora-curated small,.solyora-edit small,.solyora-essence small{color:var(--solyora-gold);letter-spacing:.2em;font-size:10px;font-weight:700}.solyora-card-copy h3{font-size:26px;font-weight:500;margin:8px 0}.solyora-card-copy p{color:#7c7169;margin-bottom:22px}.solyora-card-copy span{display:inline-flex;border-bottom:1px solid var(--solyora-gold);padding-bottom:4px;color:#6f532f;font-size:13px}
+.solyora-curated{padding-top:30px}.solyora-curated-head,.solyora-edit-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;padding-bottom:28px;border-bottom:1px solid var(--solyora-line)}.solyora-curated-head>span,.solyora-edit-head>span{direction:ltr;font-size:11px;letter-spacing:.25em;color:#8d775a}.solyora-pills{display:flex;gap:10px;flex-wrap:wrap;padding-top:28px}.solyora-pills a{padding:10px 20px;border:1px solid #d9cdbd;border-radius:999px;font-size:13px}.solyora-pills a:first-child{background:var(--solyora-deep);border-color:var(--solyora-gold);color:#fff}
+.solyora-essence{background:var(--solyora-deep);color:#f8f0e4;padding:clamp(80px,10vw,145px) max(5vw,calc((100vw - 1300px)/2));display:grid;grid-template-columns:1fr 1fr;gap:clamp(50px,8vw,120px);align-items:center}.solyora-essence-copy h2{font-size:clamp(42px,5vw,70px);line-height:1.25;font-weight:400;margin:18px 0 28px}.solyora-essence-copy h2 em{font-style:normal;color:var(--solyora-gold)}.solyora-essence-copy p{color:#c8bdb1;line-height:2;max-width:620px}.solyora-essence-list article{display:grid;grid-template-columns:55px 1fr;gap:22px;padding:28px 0;border-bottom:1px solid rgba(184,146,85,.25)}.solyora-essence-list b{color:var(--solyora-gold);font-size:12px}.solyora-essence-list h3{font-size:22px;font-weight:500;margin-bottom:8px}.solyora-essence-list p{color:#a99d91;line-height:1.8}
+.solyora-experience-grid{border:1px solid var(--solyora-line);display:grid;grid-template-columns:repeat(4,1fr)}.solyora-experience-grid article{padding:38px 30px;min-height:220px;border-inline-start:1px solid var(--solyora-line)}.solyora-experience-grid article:first-child{border-inline-start:0}.solyora-experience-grid b{color:var(--solyora-gold);font-size:12px}.solyora-experience-grid h3{font-size:21px;margin:35px 0 10px}.solyora-experience-grid p{color:#7c7169;line-height:1.8;font-size:14px}
+.solyora-edit{padding-top:60px}.solyora-edit-head>div{max-width:700px}.solyora-moments{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:42px}.solyora-moments figure{position:relative;height:520px;overflow:hidden;background:#ddd}.solyora-moments img{width:100%;height:100%;object-fit:cover;transition:transform .6s}.solyora-moments figure:hover img{transform:scale(1.035)}.solyora-moments figcaption{position:absolute;inset-inline:20px;bottom:18px;background:rgba(24,18,14,.78);backdrop-filter:blur(10px);color:#fff;padding:13px 16px;font-size:11px;letter-spacing:.18em;text-align:left;direction:ltr}
+.solyora-signature{background:#18120f;color:#f6efe4;text-align:center;padding:90px 20px 105px}.solyora-monogram{width:66px;height:66px;margin:auto;border:1px solid var(--solyora-gold);border-radius:50%;display:grid;place-items:center;color:var(--solyora-gold);font-family:Georgia,serif;font-size:38px;font-style:italic}.solyora-wordmark{font-family:Georgia,serif;font-style:italic;font-size:clamp(58px,8vw,110px);line-height:1;margin:22px 0;color:#f2e8da}.solyora-signature-line{height:1px;width:160px;background:var(--solyora-gold);margin:25px auto}.solyora-signature span{direction:ltr;display:flex;justify-content:center;align-items:center;gap:14px;font-size:10px;letter-spacing:.35em;color:#c5a36e}.solyora-signature span i{width:34px;height:1px;background:#806a49}
+
+/* footer */
+.store-footer{background:#17120f!important;color:#e9dfd2!important;border-top:1px solid rgba(184,146,85,.25)}.store-footer__inner{padding-top:72px!important;padding-bottom:56px!important}.store-footer h3{color:#c8a66d!important;letter-spacing:.12em;text-transform:uppercase;font-size:12px!important}.store-footer a{color:#d8cfc4!important}.store-footer a:hover{color:#c8a66d!important}.store-footer__bottom{border-top:1px solid rgba(184,146,85,.2)!important;color:#9f9285!important}.store-footer__desc{color:#aa9e91!important}.store-footer__logo img{filter:brightness(0) invert(1);opacity:.92}
+
+@media(max-width:900px){.solyora-category-grid,.solyora-moments{grid-template-columns:1fr 1fr}.solyora-category-grid .solyora-category-card:last-child,.solyora-moments figure:last-child{grid-column:1/-1}.solyora-essence{grid-template-columns:1fr}.solyora-experience-grid{grid-template-columns:1fr 1fr}.solyora-experience-grid article:nth-child(3){border-inline-start:0;border-top:1px solid var(--solyora-line)}.solyora-experience-grid article:nth-child(4){border-top:1px solid var(--solyora-line)}}
+@media(max-width:640px){.site-header__bar-outer{min-height:64px!important}.site-header__bar-inner{min-height:64px!important}.site-header__brand img{height:38px!important}.s-block--hero-slider .swiper-slide{min-height:72vh!important}.s-block--hero-slider .home-slider__content{padding:70px 24px 80px!important;align-items:flex-end!important}.s-block--hero-slider .home-slider__content>div{width:100%!important}.s-block--hero-slider .swiper-slide>div:first-child:after{background:linear-gradient(0deg,rgba(17,12,9,.9),rgba(17,12,9,.08) 80%)}.solyora-section{padding:70px 18px}.solyora-category-grid,.solyora-moments{grid-template-columns:1fr}.solyora-category-grid .solyora-category-card:last-child,.solyora-moments figure:last-child{grid-column:auto}.solyora-category-media{height:380px}.solyora-curated-head,.solyora-edit-head{align-items:flex-start;flex-direction:column}.solyora-essence{padding:75px 22px}.solyora-experience-grid{grid-template-columns:1fr}.solyora-experience-grid article{border-inline-start:0!important;border-top:1px solid var(--solyora-line)}.solyora-experience-grid article:first-child{border-top:0}.solyora-moments figure{height:430px}.solyora-wordmark{font-size:64px}}
+.solyora-announcement{height:34px;overflow:hidden;background:#17120f;color:#f3eadf;display:flex;align-items:center;white-space:nowrap;position:relative;z-index:70;border-bottom:1px solid rgba(184,146,85,.25)}
+.solyora-announcement__track{display:flex;align-items:center;gap:24px;width:max-content;min-width:200%;font-size:11px;letter-spacing:.12em;animation:solyora-marquee 28s linear infinite}.solyora-announcement__track i{color:var(--solyora-gold);font-style:normal}.solyora-announcement__track span{display:inline-block}@keyframes solyora-marquee{to{transform:translateX(-50%)}}
+.s-block--hero-slider .solyora-hero-side{position:absolute;z-index:3;inset-inline-end:clamp(28px,7vw,110px);top:50%;transform:translateY(-50%);width:clamp(250px,27vw,410px);height:clamp(360px,55vh,590px);padding:10px;border:1px solid rgba(224,190,135,.55);background:rgba(20,14,11,.18);backdrop-filter:blur(3px);box-shadow:0 30px 80px rgba(0,0,0,.3)}
+.s-block--hero-slider .solyora-hero-side img{width:100%;height:100%;object-fit:cover;display:block}
+@media(max-width:900px){.s-block--hero-slider .solyora-hero-side{width:260px;height:390px;inset-inline-end:24px;opacity:.8}.s-block--hero-slider .home-slider__content>div{position:relative;z-index:4}}
+@media(max-width:640px){.solyora-announcement{height:30px}.solyora-announcement__track{font-size:10px;gap:18px}.s-block--hero-slider .solyora-hero-side{display:none}}
+@media(prefers-reduced-motion:reduce){.solyora-announcement__track{animation:none}}

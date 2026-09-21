@@ -1,0 +1,159 @@
+
+/*
+  When the page ends on a full-bleed block (`s-block--full-bg` — its own colour
+  band runs edge-to-edge and butts against the footer), drop the gap above the
+  footer. Trailing empty `<salla-hook>`s aren't the last block, so match the
+  last `<section>`.
+*/
+#main-content:has(> section[class*='full-bg']:last-of-type) + .store-footer {
+  margin-top: 0;
+}
+
+.store-footer {
+  @apply relative bg-[#F4F7F2] text-gray-600 mt-8 sm:mt-16;
+
+  a{
+    @apply transition-opacity hover:opacity-75;
+  }
+
+  &__inner{
+    @apply bg-transparent py-8 lg:py-16 border-b border-gray-200;
+  }
+
+  h3{
+    @apply text-lg font-bold text-gray-900 mb-3 lg:mb-5;
+  }
+
+  .social-link {
+    @apply border border-gray-200 rounded-full w-8 h-8 justify-center flex items-center hover:opacity-75 transition duration-300 text-sm
+  }
+
+  .contact-social{
+    @apply mt-5 pt-5 border-t border-gray-100;
+
+    ul {
+      @apply mb-0;
+    }
+  }
+
+  /* Logo mark — shared by both layouts (`columns`: inside `__brand`; `centered`:
+     a direct child of `__centered`). */
+  &__logo img {
+    @apply h-11 w-auto max-w-[180px] object-contain;
+  }
+
+  &__desc {
+    @apply opacity-80;
+  }
+
+  /* Footer menu — `<salla-menu source="footer">` renders a bare
+     `.s-menu-footer-list` of `.s-menu-footer-item` anchors (no list markup).
+     Two presentations, picked by the modifier class Footer.tsx adds:
+       `--stacked` (columns layout) — a vertical list, splitting into two
+       columns once it has 6+ links;
+       `--inline`  (centered layout) — a single pipe-separated row. */
+  &__menu {
+    @apply block;
+
+    &--stacked {
+      .s-menu-footer-list {
+        @apply block;
+
+        /* 6+ links → two columns on desktop (`:nth-child(6)` = "a 6th item exists") */
+        @media (min-width: 1024px) {
+          &:has(> .s-menu-footer-item:nth-child(6)) {
+            column-count: 2;
+            column-gap: 2.5rem;
+          }
+        }
+      }
+
+      .s-menu-footer-item {
+        @apply block text-[15px] leading-snug text-gray-600;
+        margin-bottom: 0.625rem;
+        break-inside: avoid;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    &--inline {
+      .s-menu-footer-list {
+        @apply flex flex-wrap items-center justify-center gap-y-2;
+      }
+
+      .s-menu-footer-item {
+        @apply border-e border-gray-300 px-3 text-[15px] leading-none text-gray-600 mb-0;
+
+        &:first-child {
+          @apply ps-0;
+        }
+      }
+    }
+  }
+
+  .s-payments-list-item{
+    @apply w-16;
+  }
+}
+
+/* "Centered" layout — logo, description, social, footer menu, trust badges
+   and app buttons stacked as one centered column. `items-center` alone
+   centers every child regardless of its own display type, so the pieces
+   below need no per-child centering. */
+.store-footer__centered {
+  @apply mx-auto flex max-w-2xl flex-col items-center gap-6 text-center;
+}
+
+.store-footer--centered .store-footer__apps {
+  @apply flex flex-col items-center gap-3;
+}
+
+
+.copyright-text p{
+  @apply text-gray-700;
+}
+
+/* `footer_is_dark` (theme.json setting) — the engine adds `footer-is-dark` /
+   `footer-is-light` on <body> automatically (twilight-theme.ts) whenever the
+   setting is set; this theme supplies the actual colors, which the light-mode
+   rules above never did (a merchant enabling the setting saw no change). */
+body.footer-is-dark {
+  .store-footer {
+    @apply bg-gray-900 text-gray-300;
+
+    &__inner {
+      @apply border-gray-800;
+    }
+
+    h3 {
+      @apply text-white;
+    }
+
+    .social-link {
+      @apply border-gray-700;
+    }
+
+    .contact-social {
+      @apply border-gray-800;
+    }
+
+    &__menu--stacked .s-menu-footer-item {
+      @apply text-gray-300;
+    }
+
+    &__menu--inline .s-menu-footer-item {
+      @apply border-gray-700 text-gray-300;
+    }
+  }
+
+  .copyright-text p {
+    @apply text-gray-400;
+  }
+}
+/* Trust badges + tax registration row — centered when the footer is stacked. */
+.store-footer--centered .store-footer__trust {
+  @apply justify-center;
+}
