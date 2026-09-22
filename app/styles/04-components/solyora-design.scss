@@ -1,0 +1,201 @@
+
+/* SOLYORA: API-driven home components, shared chrome and cards. */
+:root { --solyora-gold:#c4a16a; --solyora-ivory:#f8f5ee; }
+.solyora-bundle-block { margin:0; padding:0; min-width:0; }
+.solyora-bundle-block:empty { display:none; }
+.solyora-topnav { display:none; }
+.solyora-header-wordmark { text-align:center; display:flex!important; flex-direction:column; color:inherit; gap:5px; }
+.solyora-header-wordmark span { font-family:Georgia,serif; font-size:29px; letter-spacing:.17em; line-height:1; }
+.solyora-header-wordmark small { font-size:7px; letter-spacing:.32em; color:var(--solyora-gold); }
+.site-header__bar { position:relative; }
+.app-inner:has(.solyora-hero) .site-header__bar-outer { position:relative; z-index:45; height:0; min-height:0!important; }
+.app-inner:has(.solyora-hero) .site-header__bar:not(.is-scrolled) { background:transparent!important; color:#fff; border-color:rgba(255,255,255,.18)!important; backdrop-filter:none; }
+.app-inner:has(.solyora-hero) .site-header__bar:not(.is-scrolled) .header-action,
+.app-inner:has(.solyora-hero) .site-header__bar:not(.is-scrolled) .s-menu-link { color:#fff!important; }
+.site-header__mainmenu { min-width:0; }
+.site-header__actions { gap:12px; }
+.site-header__brand { min-width:0; }
+.solyora-announcement { height:36px; }
+.solyora-announcement__track { min-width:0; flex-shrink:0; direction:rtl; animation-name:solyora-marquee-rtl; }
+.solyora-announcement__item { display:flex!important; gap:24px; flex-shrink:0; }
+@keyframes solyora-marquee-rtl { to { transform:translateX(50%); } }
+.solyora-hero { position:relative; min-height:760px; height:88svh; max-height:1000px; background:#17120f; color:white; isolation:isolate; overflow:hidden; }
+.solyora-hero__slide { position:absolute; inset:0; opacity:0; visibility:hidden; transition:opacity .8s,visibility .8s; }
+.solyora-hero__slide.is-active { opacity:1; visibility:visible; }
+.solyora-hero__background { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.solyora-hero__shade { position:absolute; inset:0; background:linear-gradient(90deg,rgba(14,10,8,.88),rgba(14,10,8,.62) 43%,rgba(14,10,8,.26)),linear-gradient(0deg,rgba(14,10,8,.55),transparent 50%); }
+.solyora-hero__inner { position:relative; height:100%; max-width:1440px; margin:auto; padding:130px 6% 105px; display:grid; grid-template-columns:1.05fr 1fr; gap:10%; align-items:center; direction:ltr; }
+.solyora-hero__copy { text-align:right; }
+.solyora-hero .solyora-eyebrow { justify-content:flex-end; font-size:11px; letter-spacing:.32em; margin-bottom:25px; }
+.solyora-hero h1 { font-size:clamp(40px,4.6vw,72px); font-weight:400; line-height:1.35; margin:0 0 25px; }
+.solyora-hero h1 em { display:block; color:#dfbd82; font-style:normal; }
+.solyora-hero__copy p { color:#e4dbce; font-size:16px; line-height:2; max-width:520px; }
+.solyora-hero__ctas { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
+.solyora-cta { display:inline-flex; align-items:center; justify-content:center; gap:26px; padding:14px 23px; background:#c4a16a; border:1px solid #c4a16a; color:#17120f; font-size:13px; transition:background .2s; }
+.solyora-cta:hover { background:#e1c595; }
+.solyora-cta--outline { background:transparent; color:white; border-color:#a69a88; }
+.solyora-cta--outline:hover { background:rgba(255,255,255,.12); }
+.solyora-hero__portrait { margin:0; height:min(55svh,570px); min-height:360px; border:1px solid #bfa47899; padding:10px; position:relative; }
+.solyora-hero__portrait img { width:100%; height:100%; object-fit:cover; }
+.solyora-hero__portrait figcaption { position:absolute; bottom:-32px; right:0; font-size:9px; letter-spacing:.25em; color:#dac7a9; }
+.solyora-hero__controls { position:absolute; bottom:30px; left:6%; right:6%; display:flex; align-items:center; gap:16px; }
+.solyora-hero__controls>button { width:40px; height:40px; border:1px solid #a8906a77; color:#e4c690; }
+.solyora-hero__controls>span { margin-left:auto; font-size:11px; letter-spacing:.2em; }
+.solyora-hero__dots { display:flex; gap:6px; }
+.solyora-hero__dots button { width:28px; height:44px; position:relative; }
+.solyora-hero__dots button:after { content:''; position:absolute; height:2px; width:100%; left:0; top:21px; background:#ffffff55; }
+.solyora-hero__dots button[aria-current]:after { background:#dfbd82; }
+.solyora-section { padding-top:90px; padding-bottom:90px; }
+.solyora-category-grid { grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); }
+.solyora-category-media { width:100%; height:390px; object-fit:contain; background:#eee9e0; }
+.solyora-section-head { margin-bottom:40px; }
+.solyora-products { max-width:1440px; }
+.solyora-product-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:32px 22px; }
+.solyora-intro { text-align:center; border-block:1px solid var(--solyora-line); max-width:100%; background:#eeeadf; }
+.solyora-intro h2 { font-size:clamp(30px,4vw,54px); font-weight:400; margin:24px auto; }
+.solyora-intro h2 em,.solyora-edit h2 em { color:#9a7545; font-style:normal; }
+.solyora-intro p { max-width:740px; margin:0 auto 30px; line-height:2; color:#766b61; }
+.solyora-intro>small { letter-spacing:.25em; font-size:10px; color:#9a7545; }
+.solyora-moments figure { height:470px; background:#e8e1d7; }
+.solyora-moments figcaption { text-align:right; direction:rtl; background:linear-gradient(transparent,rgba(18,13,9,.88)); inset:0; top:auto; padding:65px 24px 24px; backdrop-filter:none; }
+.solyora-moments figcaption small { letter-spacing:.17em; color:#dac197; }
+.solyora-moments figcaption h3 { font-size:23px; margin:12px 0 7px; }
+.solyora-moments figcaption p { color:#ede2d4; font-size:13px; }
+.solyora-essence-seal { display:grid; place-items:center; width:200px; height:200px; border:1px solid #b99a6244; border-radius:50%; font:italic 120px Georgia,serif; color:#c4a16a; margin:auto; }
+.solyora-store-description { line-height:2.1; color:#c6bbae; }
+.solyora-empty { text-align:center; padding:45px 20px; color:#776b5c; border:1px solid var(--solyora-line); }
+.solyora-empty button { text-decoration:underline; margin-inline-start:10px; }
+.s-product-card-entry { border:1px solid #dfd6c8!important; border-radius:0!important; background:#fffdf8!important; box-shadow:none!important; overflow:hidden; }
+.s-product-card-image { background:#eeeae3!important; border-radius:0!important; aspect-ratio:4/5; }
+.s-product-card-image img { object-fit:contain!important; transition:transform .45s; }
+.s-product-card-entry:hover .s-product-card-image img { transform:scale(1.035); }
+.s-product-card-content { padding:18px!important; }
+.s-product-card-content-title a { font-size:14px!important; line-height:1.8; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; min-height:50px; }
+.s-product-card-content-subtitle { display:none; }
+.s-product-card-content-footer { gap:8px!important; margin-top:18px!important; }
+.s-product-card-content-footer .s-button-element { border-radius:0!important; min-height:43px; }
+.s-product-card-price,.s-product-card-sale-price h4 { color:#342a21!important; font-size:16px!important; }
+.s-product-card-sale-price { gap:10px; flex-wrap:wrap; }
+.s-product-card-sale-price>span { color:#9b8f80!important; }
+.s-product-card-promotion-title { max-width:90%; white-space:normal!important; background:#201913!important; color:#e2c798!important; border-radius:0!important; font-size:10px!important; }
+.solyora-footer-wordmark { font:32px Georgia,serif; letter-spacing:.2em; color:#ddc196; }
+.store-footer__brand { grid-column:span 2; }
+.store-footer__links h3,.store-footer__apps h3 { margin-bottom:24px; }
+.store-footer .s-contacts-list { display:flex; flex-direction:column; gap:15px; }
+:where(a,button):focus-visible { outline:2px solid #b48a4e; outline-offset:5px; }
+@media(min-width:1024px) { .site-header__bar-inner { grid-template-columns:auto 1fr auto!important; padding-inline:4%; } .site-header__nav-toggle { display:none; } .site-header__mainmenu { justify-self:center; } }
+@media(max-width:1023px) { .solyora-hero { min-height:700px; height:85svh; } .solyora-hero__inner { gap:6%; padding-inline:5%; } .solyora-hero__portrait { min-height:300px; height:420px; } .solyora-product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .solyora-experience-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:767px) {
+ .site-header__bar-inner { gap:8px; padding-inline:16px; grid-template-columns:32px 1fr auto!important; }
+ .site-header__actions { gap:3px; } .site-header__actions .header-action { width:32px; height:38px; } .site-header__actions .header-action svg { width:20px; height:20px; }
+ .solyora-header-wordmark span { font-size:21px; letter-spacing:.13em; } .solyora-header-wordmark small { font-size:6px; letter-spacing:.13em; }
+ body.index .site-header__actions salla-cart-summary { display:inline-block; }
+ .solyora-hero { min-height:850px; height:auto; }
+ .solyora-hero__inner { display:flex; flex-direction:column; align-items:stretch; justify-content:flex-start; padding:100px 24px 95px; gap:28px; }
+ .solyora-hero__copy { max-width:100%; } .solyora-hero h1 { font-size:39px; margin-bottom:15px; } .solyora-hero .solyora-eyebrow { margin-bottom:14px; }
+ .solyora-hero__copy p { font-size:14px; line-height:1.9; } .solyora-hero__ctas { margin-top:20px; gap:8px; } .solyora-cta { padding:12px 15px; gap:12px; font-size:12px; }
+ .solyora-hero__portrait { min-height:0; height:260px; width:64%; align-self:flex-end; } .solyora-hero__portrait figcaption { font-size:7px; bottom:-20px; }
+ .solyora-hero__controls { bottom:20px; gap:8px; } .solyora-hero__dots { gap:3px; } .solyora-hero__dots button { width:18px; }
+ .solyora-section { padding:60px 20px; } .solyora-section-head h2 { font-size:32px; } .solyora-category-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+ .solyora-category-media { height:210px; } .solyora-card-copy { padding:18px 12px; } .solyora-card-copy h3 { font-size:18px; } .solyora-card-copy span { font-size:11px; }
+ .solyora-product-grid { gap:18px 10px; } .s-product-card-content { padding:12px!important; } .s-product-card-content-title a { font-size:12px!important; min-height:44px; } .s-product-card-content-footer { flex-wrap:wrap; } .s-product-card-content-footer .s-button-text { font-size:11px; }
+ .solyora-experience-grid article { padding:24px 18px; min-height:200px; } .solyora-experience-grid h3 { font-size:18px; }
+ .solyora-moments { grid-template-columns:1fr; } .solyora-moments figure { height:430px; } .solyora-essence { gap:40px; } .store-footer__brand { grid-column:auto; }
+}
+@media(prefers-reduced-motion:reduce) { .solyora-hero__slide,.s-product-card-image img { transition:none; } .solyora-announcement__track { animation:none; } }
+
+@media(max-width:767px) {
+ body.index .site-header__actions salla-user-menu { position:relative; width:32px; height:38px; overflow:visible; visibility:visible; }
+ .solyora-header-wordmark span { font-size:18px; }
+}
+
+.app-inner:has(.solyora-hero) .site-header__bar:not(.is-scrolled) .s-menu-root-level>a { color:#fff!important; }
+.app-inner:has(.solyora-hero) .site-header__bar:not(.is-scrolled) .s-user-menu-trigger { color:#fff!important; }
+.site-header__mainmenu .s-menu-root-level>a { font-size:12px; }
+
+.app-inner:has(.solyora-hero) .site-header__bar:not(.is-scrolled) .s-user-menu-login-btn svg { fill:white!important; }
+.site-header__actions .s-user-menu-login-btn { padding:0; border:0; width:30px; height:30px; background:transparent; }
+.site-header__actions .s-user-menu-login-btn svg { width:22px; height:22px; }
+.solyora-footer-navigation .s-menu-mobile-item { display:block!important; }
+.solyora-footer-navigation .s-menu-desktop-item { display:none!important; }
+.solyora-footer-navigation .s-menu-mobile-link { color:#d8cbbb!important; font-weight:400; font-size:13px; padding:6px 0; }
+.solyora-footer-navigation { display:block; margin-bottom:28px; }
+
+.s-product-card-content-footer .s-button-btn { background:#211914!important; border-color:#b89255!important; color:#f7eddf!important; padding-inline:6px!important; }
+.s-product-card-content-footer .s-button-btn .s-button-text { overflow:visible!important; text-overflow:clip!important; white-space:normal!important; line-height:1.4; }
+.mobile-bottom-bar__item.is-active { background:#c4a16a!important; color:#201710!important; }
+@media(max-width:420px) { .s-product-card-content-footer { gap:5px!important; } .s-product-card-content-footer>.s-button-wrap { width:28px!important; } .s-product-card-content-footer>.s-button-wrap .s-button-icon { width:28px!important; } }
+
+.s-product-card-content-title a:hover { color:#96703c!important; }
+
+/* Final polish: retain the approved composition and palette. */
+.solyora-announcement__track { width:max-content; gap:0; animation-duration:32s; animation-timing-function:linear; }
+.solyora-announcement__group { display:flex; flex:none; align-items:center; justify-content:space-around; min-width:100vw; gap:32px; padding-inline:16px; }
+.solyora-announcement:hover .solyora-announcement__track { animation-play-state:paused; }
+.solyora-image-carousel { display:block; min-width:0; }
+.solyora-image-carousel__viewport { overflow:hidden; touch-action:pan-y; }
+.solyora-image-carousel__track { display:flex; gap:22px; direction:rtl; align-items:stretch; }
+.solyora-image-carousel__item { flex:0 0 calc((100% - (var(--rail-columns) - 1)*22px)/var(--rail-columns)); min-width:0; }
+.solyora-image-carousel__item>* { display:block; height:100%; }
+.solyora-image-carousel__item figure { margin:0; }
+.solyora-image-carousel__controls { display:flex; align-items:center; justify-content:center; gap:10px; margin-top:20px; }
+.solyora-image-carousel__controls>button { width:44px; height:44px; border:1px solid var(--solyora-line); color:#96703c; transition:background .2s; }
+.solyora-image-carousel__controls>button:hover { background:#eee9e0; }
+.solyora-image-carousel__dots { display:flex; gap:4px; }
+.solyora-image-carousel__dots button { width:28px; height:44px; position:relative; }
+.solyora-image-carousel__dots button:after { content:''; position:absolute; inset:21px 3px; background:#d7cdbc; transition:background .2s; }
+.solyora-image-carousel__dots button[aria-current]:after { background:var(--solyora-gold); }
+.solyora-hero { touch-action:pan-y; }
+.solyora-hero img,.solyora-image-carousel img { -webkit-user-drag:none; user-select:none; }
+.solyora-hero__controls>button { min-width:44px; min-height:44px; transition:background .2s,border-color .2s; }
+.solyora-hero__controls>button:hover { background:#c4a16a22; border-color:var(--solyora-gold); }
+.solyora-cta { min-height:44px; transition:background .2s, border-color .2s, transform .2s; }
+.solyora-cta:active { transform:translateY(1px); }
+.site-header__bar { transition:background-color .25s,box-shadow .25s,color .25s; }
+.solyora-section-head p,.solyora-edit-head p { line-height:1.95; text-wrap:pretty; }
+.solyora-section h2,.solyora-essence h2 { line-height:1.45; text-wrap:balance; }
+.solyora-empty { border-radius:2px; line-height:1.9; background:#f8f5ee; }
+.solyora-empty button { min-height:44px; }
+.s-product-card-entry { height:100%; }
+.s-product-card-content { display:flex; flex-direction:column; flex:1; }
+.s-product-card-content-footer { margin-top:auto!important; padding-top:18px; }
+.s-product-card-content-title { margin-bottom:12px; }
+.s-product-card-price,.s-product-card-sale-price { min-height:28px; }
+.store-footer__links a { transition:color .2s; }
+.store-footer__links a:hover { color:var(--solyora-gold)!important; }
+@media(max-width:1023px) and (min-width:768px) {
+ .solyora-moments.solyora-image-carousel { --rail-columns:2!important; }
+}
+@media(max-width:767px) {
+ .solyora-moments.solyora-image-carousel { --rail-columns:1!important; }
+ .solyora-image-carousel__track { gap:12px; }
+ .solyora-image-carousel__item { flex-basis:calc((100% - (var(--rail-columns) - 1)*12px)/var(--rail-columns)); }
+ .solyora-hero__dots button { width:20px; }
+ .solyora-hero__controls { gap:5px; }
+ .solyora-section-head { margin-bottom:30px; }
+ .solyora-edit-head { gap:20px; }
+ .store-footer__links h3,.store-footer__apps h3 { margin-bottom:16px; }
+ .store-footer .s-contacts-list { gap:12px; }
+}
+@media(max-width:360px) { .solyora-hero { min-height:900px; } .solyora-hero__inner { padding-inline:18px; } .solyora-hero h1 { font-size:35px; } .solyora-hero__controls>span { letter-spacing:0; } }
+@media(prefers-reduced-motion:reduce) {
+ .solyora-announcement__track { animation:none; }
+ .solyora-announcement__group { min-width:100vw; }
+ .solyora-cta,.site-header__bar,.solyora-image-carousel__controls>button,.solyora-image-carousel__dots button:after { transition:none; }
+}
+.app-inner:has(.solyora-hero) .site-header__bar:not(.is-scrolled) .solyora-header-wordmark span { color:#fff!important; }
+.solyora-hero__controls>span { white-space:nowrap; flex-shrink:0; }
+@media(max-width:380px) { .solyora-hero__dots button { width:17px; } .solyora-hero__controls { left:4%; right:4%; gap:4px; } }
+.store-footer__apps .s-contacts-title { display:none; }
+@media(max-width:767px) { .store-footer__inner>.container { row-gap:30px; } .solyora-footer-navigation { margin-bottom:12px; } }
+body.index .s-products-list-vertical-cards { grid-template-columns:repeat(4,minmax(0,1fr))!important; gap:24px 22px!important; max-width:1440px; margin-inline:auto; }
+@media(max-width:1023px) { body.index .s-products-list-vertical-cards { grid-template-columns:repeat(2,minmax(0,1fr))!important; gap:20px 16px!important; } }
+@media(max-width:767px) { body.index .s-products-list-vertical-cards { gap:18px 10px!important; } }
+body.index section.s-block.container { max-width:1440px; padding-inline:5%; margin-inline:auto; }
+@media(max-width:767px) { body.index section.s-block.container { padding-inline:20px; } }
+.solyora-footer-navigation .main-menu { display:flex!important; flex-direction:column; align-items:stretch; gap:2px; }
+.solyora-footer-navigation .s-menu-mobile-link { display:flex; align-items:center; min-height:36px; line-height:1.7; }
+@media(max-width:767px) { .solyora-footer-navigation .s-menu-mobile-link { min-height:44px; } }
+@media(max-width:380px) { .solyora-hero__controls>span { position:absolute; right:0; bottom:52px; } .solyora-hero__dots { flex:1; } .solyora-hero__dots button { flex:1; min-width:0; } }
+
+.store-footer__links:has(.s-menu-footer-list:empty)>h3:last-of-type { display:none; }

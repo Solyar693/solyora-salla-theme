@@ -1,0 +1,18 @@
+SOLYORA Salla theme - review build
+
+Included fixes/review state:
+- Cinematic hero background zoom retained.
+- Search navigation/query pagination fixes retained.
+- Cart loading/retry handling retained.
+- Cart quantity/delete calls now preserve cart-line IDs as strings, matching current Salla Theme Raed guidance.
+- Cart mutation failures are visible to the shopper and optimistic quantity rolls back.
+- Wishlist guest 401 handling tests included.
+- Arabic/English fallback translations retained.
+- No .env, node_modules, dist, .git, credentials, or nested scratch theme included.
+
+Validation context:
+- Before the final cart-ID hardening, Codex reported TypeScript/build success and 158 passing tests.
+- Static audit of this package found no obvious embedded private keys/password assignments and git diff whitespace check is clean.
+- This sandbox could not rerun the full TypeScript/Vitest/build suite because the uploaded ZIP's pnpm node_modules symlinks are not portable after extraction. Run pnpm install, pnpm typecheck, pnpm test, and pnpm build on the Windows project before submitting to Salla.
+- Loyalty endpoint was reported by Salla as temporarily unavailable (HTTP 400) during live demo-store testing.
+- Checkout could not be fully certified while the demo store was in maintenance mode.
