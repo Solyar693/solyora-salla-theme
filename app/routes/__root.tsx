@@ -9,6 +9,7 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import themeTranslations from 'virtual:twilight/theme-translations';
 import devSchema from 'virtual:twilight/schema';
 import { ThemeLayout } from '../components/layout/ThemeLayout';
+import { SearchNavigation } from '../components/common/SearchNavigation';
 import { SallaSearchCore as SallaSearch } from '@salla.sa/twilight-components-react/search';
 import '../styles/app.css';
 
@@ -47,6 +48,7 @@ function RootComponent() {
         <TwilightProvider translations={themeTranslations} layout={ThemeLayout}>
           <Outlet />
           <SallaSearch suppressHydrationWarning />
+          <SearchNavigation />
         </TwilightProvider>
         <TanStackRouterDevtools position="bottom-right" />
         {DevSettingsWidget && (

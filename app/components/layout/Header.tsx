@@ -15,7 +15,6 @@ import { useHydrated } from '../common/useHydrated';
 import { PRODUCT_ROUTE_ID } from '../common/routeIds';
 import { HeaderNav } from './HeaderNav';
 import { HeaderTopnav } from './HeaderTopnav';
-import { SearchNavigation } from '../common/SearchNavigation';
 
 /** Opens the Salla search modal (the `<SallaSearch />` in the root layout). */
 const openSearch = () => window.salla?.event?.dispatch('search::open');
@@ -225,11 +224,7 @@ export function Header({ navOpen: navOpenProp, onNavOpenChange }: HeaderProps = 
         <div className="container site-header__intro-inner">
           <Title className="site-header__intro-title">{store?.name}</Title>
           {store?.description && (
-            <div
-              className="site-header__intro-text"
-              // Merchant-authored HTML, mirrors the Twig theme's `store.description|raw`.
-              dangerouslySetInnerHTML={{ __html: store.description }}
-            />
+            <div className="site-header__intro-text">{store.description}</div>
           )}
           <SallaSocial className="site-header__social" />
           <SallaContacts
@@ -243,7 +238,6 @@ export function Header({ navOpen: navOpenProp, onNavOpenChange }: HeaderProps = 
 
       <HeaderNav open={navOpen} onClose={() => setNavOpen(false)} />
 
-      <SearchNavigation />
 
       <HookSlot name="header:end" />
     </header>

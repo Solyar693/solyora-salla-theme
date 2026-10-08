@@ -125,10 +125,7 @@ export function ProductPage({ product: initialProduct, page }: ProductPageProps)
 
           <div className="main-content md:sticky md:overflow-hidden md:top-24 w-full md:w-2/4 md:pb-16">
             <HookSlot name="product:details.start" />
-            <HookSlot name="product:single.description.start" />
             <ProductDetails product={product} showTags={theme.settings.show_tags} />
-            <HookSlot name="product:single.description" />
-            <HookSlot name="product:single.description.end" />
             <HookSlot name="product:details.end" />
 
             <HookSlot name="product:single.form.start" />
