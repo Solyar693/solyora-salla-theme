@@ -160,11 +160,7 @@ export function Footer() {
             </Link>
 
             {store.description && (
-              <div
-                className="store-footer__desc"
-                // Merchant-authored HTML, mirrors the Twig theme's `store.description|raw`.
-                dangerouslySetInnerHTML={{ __html: store.description }}
-              />
+              <div className="store-footer__desc">{store.description}</div>
             )}
 
             <SallaSocial />
@@ -193,11 +189,9 @@ export function Footer() {
               </Link>
 
               {store.description && (
-                <div
-                  className="store-footer__desc max-w-sm leading-6 my-5"
-                  // Merchant-authored HTML, mirrors the Twig theme's `store.description|raw`.
-                  dangerouslySetInnerHTML={{ __html: store.description }}
-                />
+                <div className="store-footer__desc max-w-sm leading-6 my-5">
+                  {store.description}
+                </div>
               )}
 
               <SallaSocial className="block mb-6" />

@@ -34,6 +34,13 @@ function moneyCurrency(value: number | Money | undefined): string | undefined {
   return value.currency;
 }
 
+/** Prefer the API's validation message (e.g. stock limit) over a generic error. */
+function mutationMessage(error: unknown, fallback: string): string {
+  const response = (error as { response?: { data?: { message?: unknown; error?: { message?: unknown } } } } | null)?.response;
+  const message = response?.data?.error?.message ?? response?.data?.message;
+  return typeof message === 'string' && message.trim() ? message : fallback;
+}
+
 /**
  * Plain-React quantity stepper — the `<salla-quantity-input>` web component
  * (deferred or Core) either stuck on its skeleton or never wired its buttons
@@ -106,6 +113,7 @@ function CartQuantity({
         </button>
         <input
           className="s-quantity-input-input"
+          name="quantity"
           inputMode="numeric"
           aria-label={label}
           value={qty}
@@ -250,6 +258,7 @@ export function CartItem({ item, isFirst = false, onMutated }: CartItemProps) {
   const { format } = useMoney();
   const [deleting, setDeleting] = useState(false);
   const [mutationError, setMutationError] = useState<string | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
   // Belt-and-suspenders against `CartQuantity`'s debounced commit: it cancels
   // its pending timer once `disabled` propagates, but that's a render away —
   // a delete within the 350ms debounce window could otherwise still fire a
@@ -263,9 +272,16 @@ export function CartItem({ item, isFirst = false, onMutated }: CartItemProps) {
       // Refetch only on success — on rejection the caller reverts the
       // optimistic quantity locally instead (server state didn't change).
       setMutationError(null);
-      // Salla standardized cart item identifiers as strings; preserving the
-      // identifier exactly avoids option/cart-line mismatches in Twilight.
-      await window.salla?.cart.updateItem({ id: String(item.id) as never, quantity });
+      const sdk = window.salla;
+      if (!sdk?.cart?.updateItem || !formRef.current) {
+        throw new Error('Cart SDK is unavailable');
+      }
+      // Keep selected options, notes and attachments just like the engine's
+      // form handler. A quantity-only object drops required variant fields.
+      const payload = new FormData(formRef.current);
+      payload.set('id', String(item.id));
+      payload.set('quantity', String(quantity));
+      await sdk.cart.updateItem(payload as never);
       onMutated?.();
     },
     [item.id, onMutated]
@@ -285,21 +301,22 @@ export function CartItem({ item, isFirst = false, onMutated }: CartItemProps) {
     setDeleting(true);
     setMutationError(null);
     try {
-      await window.salla?.cart.deleteItem(String(item.id) as never);
+      if (!window.salla?.cart?.deleteItem) throw new Error('Cart SDK is unavailable');
+      await window.salla.cart.deleteItem(String(item.id) as never);
       // Prefer a refetch (also refreshes the summary); fall back to yanking the row.
       if (onMutated) onMutated();
       else document.querySelector(`#item-${item.id}`)?.remove();
-    } catch {
+    } catch (error) {
       deletingRef.current = false;
       setDeleting(false);
-      setMutationError(t('pages.cart.mutation_error', 'Unable to update the cart. Please try again.'));
+      setMutationError(mutationMessage(error, t('pages.cart.mutation_error', 'Unable to update the cart. Please try again.')));
     }
   };
 
   const isFreeProduct = toNumber(item.price) === 0 && item.has_discount;
 
   return (
-    <form onChange={handleChange} id={`item-${item.id}`}>
+    <form ref={formRef} onChange={handleChange} id={`item-${item.id}`}>
       <section className="cart-item relative border-b border-gray-200 pb-6 mb-6">
         <input type="hidden" name="id" value={item.id} />
 
@@ -332,7 +349,7 @@ export function CartItem({ item, isFirst = false, onMutated }: CartItemProps) {
                 try {
                   await changeQuantity(quantity);
                 } catch (error) {
-                  setMutationError(t('pages.cart.mutation_error', 'Unable to update the cart. Please try again.'));
+                  setMutationError(mutationMessage(error, t('pages.cart.mutation_error', 'Unable to update the cart. Please try again.')));
                   throw error;
                 }
               }}

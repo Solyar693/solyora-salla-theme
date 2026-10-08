@@ -28,6 +28,3 @@ export function registerThemeHooks() {
     50
   );
 }
-
-// Auto-register on module load
-registerThemeHooks();

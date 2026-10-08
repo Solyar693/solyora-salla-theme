@@ -1,4 +1,3 @@
-// @auto-generated
 import { createFileRoute } from '@tanstack/react-router';
 import { ThankYou } from '@salla.sa/twilight-theme-engine/routes/thank-you';
 import type { ThankYouPageProps } from '@salla.sa/twilight-theme-engine/routes/thank-you';

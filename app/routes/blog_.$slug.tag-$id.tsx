@@ -1,4 +1,3 @@
-// @auto-generated
 import { createFileRoute } from '@tanstack/react-router';
 import { BlogTagRoute } from '@salla.sa/twilight-theme-engine/routes/blog';
 import type { BlogTagLoaderData } from '@salla.sa/twilight-theme-engine/routes/blog';

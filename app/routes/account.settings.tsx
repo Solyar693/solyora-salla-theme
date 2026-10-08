@@ -1,4 +1,3 @@
-// @auto-generated
 import { createFileRoute } from '@tanstack/react-router';
 import { Settings } from '@salla.sa/twilight-theme-engine/routes/account';
 import type { SettingsPageProps } from '@salla.sa/twilight-theme-engine/routes/account';

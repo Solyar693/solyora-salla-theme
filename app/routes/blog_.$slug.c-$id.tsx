@@ -1,4 +1,3 @@
-// @auto-generated
 import { createFileRoute } from '@tanstack/react-router';
 import { BlogCategoryRoute } from '@salla.sa/twilight-theme-engine/routes/blog';
 import type { BlogCategoryLoaderData } from '@salla.sa/twilight-theme-engine/routes/blog';

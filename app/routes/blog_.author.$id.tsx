@@ -1,4 +1,3 @@
-// @auto-generated
 import { createFileRoute } from '@tanstack/react-router';
 import { BlogAuthorRoute } from '@salla.sa/twilight-theme-engine/routes/blog';
 import type { BlogAuthorLoaderData } from '@salla.sa/twilight-theme-engine/routes/blog';

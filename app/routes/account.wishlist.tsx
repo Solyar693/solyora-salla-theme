@@ -1,4 +1,3 @@
-// @auto-generated
 import { createFileRoute } from '@tanstack/react-router';
 import { Wishlist } from '@salla.sa/twilight-theme-engine/routes/account';
 import type { WishlistPageProps } from '@salla.sa/twilight-theme-engine/routes/account';

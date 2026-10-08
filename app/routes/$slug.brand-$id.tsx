@@ -1,4 +1,3 @@
-// @auto-generated
 import { createFileRoute } from '@tanstack/react-router';
 import { slugBrandRedirectLoader } from '@salla.sa/twilight-theme-engine/routes/seo-redirects';
 

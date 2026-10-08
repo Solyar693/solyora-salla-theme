@@ -1,4 +1,3 @@
-// @auto-generated
 import { createFileRoute } from '@tanstack/react-router';
 import { Notifications } from '@salla.sa/twilight-theme-engine/routes/account';
 import type { NotificationsPageProps } from '@salla.sa/twilight-theme-engine/routes/account';

@@ -1,4 +1,3 @@
-// @auto-generated
 import { createFileRoute } from '@tanstack/react-router';
 import { Brands } from '@salla.sa/twilight-theme-engine/routes/brands';
 import type { BrandsPageProps } from '@salla.sa/twilight-theme-engine/routes/brands';
