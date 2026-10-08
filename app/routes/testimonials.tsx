@@ -1,4 +1,3 @@
-// @auto-generated
 import { createFileRoute } from '@tanstack/react-router';
 import { Testimonials } from '@salla.sa/twilight-theme-engine/routes/testimonials';
 import type { TestimonialsPageProps } from '@salla.sa/twilight-theme-engine/routes/testimonials';

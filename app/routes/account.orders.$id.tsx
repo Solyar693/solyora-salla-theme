@@ -1,4 +1,3 @@
-// @auto-generated
 import { createFileRoute } from '@tanstack/react-router';
 import { OrderSingle } from '@salla.sa/twilight-theme-engine/routes/account/orders';
 import type { OrderSinglePageProps } from '@salla.sa/twilight-theme-engine/routes/account/orders';

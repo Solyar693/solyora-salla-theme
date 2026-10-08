@@ -1,4 +1,3 @@
-// @auto-generated
 import { createFileRoute } from '@tanstack/react-router';
 import { Loyalty } from '@salla.sa/twilight-theme-engine/routes/loyalty';
 import type { LoyaltyPageProps } from '@salla.sa/twilight-theme-engine/routes/loyalty';

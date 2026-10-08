@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouterState } from '@tanstack/react-router';
 
-import { SallaSearchCore as SallaSearch } from '@salla.sa/twilight-components-react/search';
 import { SallaSocial } from '@salla.sa/twilight-components-react/social';
 import { SallaMenu } from '@salla.sa/twilight-components-react/menu';
 import { SallaUserMenu } from '@salla.sa/twilight-components-react/user-menu';
@@ -18,7 +17,7 @@ import { HeaderNav } from './HeaderNav';
 import { HeaderTopnav } from './HeaderTopnav';
 import { SearchNavigation } from '../common/SearchNavigation';
 
-/** Opens the Salla search modal (the `<SallaSearch />` at the end of the header). */
+/** Opens the Salla search modal (the `<SallaSearch />` in the root layout). */
 const openSearch = () => window.salla?.event?.dispatch('search::open');
 
 const openScopes = () => window.salla?.event?.dispatch('scopes::open');
@@ -68,7 +67,7 @@ function ScopeButton({ label }: { label: string }) {
  *
  * The menu opens a slide-in drawer at every breakpoint ({@link HeaderNav}); the
  * search icon opens the Salla search modal through the `search::open` event
- * (the `<SallaSearch />` instance mounted at the end of this header). Styling
+ * (the `<SallaSearch />` instance mounted in the root layout). Styling
  * lives in `styles/04-components/header.scss`. The `header:start` / `header:end`
  * hook slots are kept for installed apps.
  *
@@ -244,7 +243,6 @@ export function Header({ navOpen: navOpenProp, onNavOpenChange }: HeaderProps = 
 
       <HeaderNav open={navOpen} onClose={() => setNavOpen(false)} />
 
-      <SallaSearch suppressHydrationWarning />
       <SearchNavigation />
 
       <HookSlot name="header:end" />

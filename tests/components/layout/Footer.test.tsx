@@ -74,6 +74,14 @@ beforeEach(() => {
 });
 
 describe('Footer', () => {
+  it('renders merchant description as text without creating HTML elements', () => {
+    state.store.description = '<img src=x onerror="alert(1)"><script>alert(1)</script>';
+    const { container } = render(<Footer />);
+    const description = container.querySelector('.store-footer__desc');
+    expect(description?.textContent).toBe(state.store.description);
+    expect(description?.querySelector('img, script')).toBeNull();
+  });
+
   it('renders the logo (not a store-name heading), description, social, badges, apps and payments', () => {
     const { container } = render(<Footer />);
     expect(container.querySelector('.solyora-footer-wordmark')?.textContent).toBe('SOLYORA');

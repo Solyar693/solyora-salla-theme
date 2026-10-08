@@ -1,4 +1,3 @@
-// @auto-generated
 import { createFileRoute } from '@tanstack/react-router';
 import { Wallet } from '@salla.sa/twilight-theme-engine/routes/account';
 import type { WalletPageProps } from '@salla.sa/twilight-theme-engine/routes/account';

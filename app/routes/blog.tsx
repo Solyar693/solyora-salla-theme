@@ -1,4 +1,3 @@
-// @auto-generated
 import { createFileRoute } from '@tanstack/react-router';
 import { Blog } from '@salla.sa/twilight-theme-engine/routes/blog';
 import type { BlogPageProps } from '@salla.sa/twilight-theme-engine/routes/blog';

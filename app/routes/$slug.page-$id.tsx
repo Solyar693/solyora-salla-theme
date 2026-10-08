@@ -1,4 +1,3 @@
-// @auto-generated
 import { createFileRoute } from '@tanstack/react-router';
 import { PageSingle } from '@salla.sa/twilight-theme-engine/routes/page';
 import type { PageSingleProps } from '@salla.sa/twilight-theme-engine/routes/page';

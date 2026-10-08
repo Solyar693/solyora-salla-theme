@@ -1,4 +1,3 @@
-// @auto-generated
 import { createFileRoute } from '@tanstack/react-router';
 import { Cart } from '@salla.sa/twilight-theme-engine/routes/cart';
 import type { CartPageProps } from '@salla.sa/twilight-theme-engine/routes/cart';
